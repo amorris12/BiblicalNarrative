@@ -1,0 +1,134 @@
+h1 {
+  font-family: Georgia;
+  font-size: 24px;
+  padding-left: 4px;
+  border-left: 8px solid #607D8B;
+  font-weight: bold;
+}
+
+h2 {
+  font-family: Georgia;
+  font-size: 22px;
+}
+
+h3 {
+  font-family: Georgia;
+  font-size: 18px;
+}
+
+h4 {
+  font-family: Georgia;
+  font-size: 32px;
+  padding-left: 4px;
+}
+
+.mainText {
+  font-family: Calibri;
+  font-size: 18px;
+}
+
+.reference {
+  font-family: Calibri;
+  font-size: small;
+  font-weight: bold;
+}
+
+.tag {
+  font-size: 10px;
+  background: lightgrey;
+  border: 2px solid grey;
+  border-radius: 3px;
+  border-style: groove;
+  padding: 3px;
+  cursor: pointer;
+}
+
+i {cursor: pointer;}
+
+.indent1 {
+  margin-left: 3px;
+  padding-left: 5px;
+  border-left: 5px solid #607D8B;
+  background-color: white;
+}
+
+.indent2 {
+  padding-left: 4px;
+  border-left: 6px solid lightgrey;
+}
+
+#fixedDiv {
+  position: fixed;
+  bottom: 20px;
+  right: 7.5%;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  color: lightgrey;
+}
+
+#fixedSection {
+  background-color: black;
+  opacity: .6;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.fixedToolTip {
+  position: fixed;
+  bottom: 70px;
+  right: 7.5%;
+  z-index: 1;
+  border: 3px solid black;
+  border-radius: 4px;
+  overflow: auto;
+}
+
+#tagUL {
+  top: -50px;
+  border-radius: 4px;
+  border: 3px solid black;
+  opacity: .95;
+  font-size: 12px;
+}
+
+#tagsListed {
+  padding: none;
+  font-size: 12px;
+}
+
+.clickable {
+  background-color: #607D8B;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.clickable:hover {
+  color: white;
+  cursor: pointer;
+}
+
+#myLayout {
+  margin-left: 7.5%;
+  margin-right: 7.5%;
+  border-right: 2px solid #607D8B;
+}
+
+@media only screen and (max-width: 600px) {
+  #myLayout {
+	margin-left: 0%;
+	margin-right: 0%;
+  }
+
+  h1 {font-size: 20px;}
+  h2 {font-size: 18px;}
+  h3 {font-size: 16px;}
+  h4 {font-size: 22px;}
+  p {font-size: 14px;}
+  #fixedDiv {right: 5px;}
+  .fixedToolTip {right: 5px;}
+}
