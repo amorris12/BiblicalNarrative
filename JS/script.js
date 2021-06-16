@@ -329,6 +329,7 @@ function performJump (whichElement) {
     document.getElementById(whichElement).scrollIntoView();
     document.getElementById("fixedSection").style.display = "none";
     document.getElementById("tagList").style.display = "none";
+    document.getElementById("jumpTo").style.display = "none";
   }  
 }
 
