@@ -330,6 +330,7 @@ function performJump (whichElement) {
     document.getElementById("fixedSection").style.display = "none";
     document.getElementById("tagList").style.display = "none";
     document.getElementById("jumpTo").style.display = "none";
+    showHide(document.getElementById(whichElement));
   }  
 }
 
