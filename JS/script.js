@@ -326,11 +326,12 @@ function performJump (whichElement) {
     currentSheet = loadValues[whichElement];
     loadGoogleSheet(allSheets[currentSheet]);
   } else {
-    document.getElementById(whichElement).scrollIntoView();
     document.getElementById("fixedSection").style.display = "none";
     document.getElementById("tagList").style.display = "none";
     document.getElementById("jumpTo").style.display = "none";
-    showHide(document.getElementById(whichElement));
+    let thisElement = document.getElementById(whichElement);
+    thisElement.scrollIntoView();
+    if (thisElement.innerHTML.indexOf("fa-plus") >= 0) {showHide(thisElement);}
   }  
 }
 
