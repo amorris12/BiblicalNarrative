@@ -31,7 +31,7 @@ var allLabels = [];
 
 loadGoogleSheet(allSheets[currentSheet]);
 
-function loadGoogleSheet (whatSheetID, searchTag) {
+function loadGoogleSheet (whatSheetID, searchTag, notTag) {
   sheetID = whatSheetID;
 
   let xmlhttp = new XMLHttpRequest();
@@ -61,7 +61,7 @@ function loadGoogleSheet (whatSheetID, searchTag) {
       document.getElementById("tipTextPrev").innerHTML = sectionTitles[currentSheet - 1];
       document.getElementById("tipTextNext").innerHTML = sectionTitles[currentSheet + 1];      
 
-      if (searchTag != "" && searchTag != undefined) {doTagSearch(searchTag)}
+      if (searchTag != "" && searchTag != undefined) {doTagSearch(searchTag, notTag)}
     }
   }
 }
@@ -241,7 +241,7 @@ function expandAll (outlineOnly) {
   }
 }
 
-function findTags(searchTag) {
+function findTags(searchTag, notTag) {
   document.getElementById("tagsListed").innerHTML = "";
   document.getElementById("tagsHeading").innerHTML = "Results for: " + searchTag;
   document.getElementById("tagList").style.display = "block";
@@ -249,20 +249,23 @@ function findTags(searchTag) {
 
   if (currentSheet != 0) {
     currentSheet = 0;
-    loadGoogleSheet(allSheets[currentSheet], searchTag);
+    loadGoogleSheet(allSheets[currentSheet], searchTag, notTag);
   } else {
     showMainContent();
-    doTagSearch(searchTag);
+    doTagSearch(searchTag, notTag);
+    document.getElementById("tagList").style.cursor = "auto";
   }
 }
 
-function doTagSearch(searchTag) {
+function doTagSearch(searchTag, notTag) {
   let level1Element, level1Shown, level2Element, level2Shown, i;
   for (i = 1; i < numOfRows; i ++) {
+    let searchColumn = 3; // default column is tags
+    if (notTag) {searchColumn = 5} // search text instead of tags
     let thisHeading = parsedData[i][myColumnIDs[0]]["$t"]
     let headingLevel = parsedData[i][myColumnIDs[1]]["$t"];
     let headingID = parsedData[i][myColumnIDs[2]]["$t"];
-    let theseTags = parsedData[i][myColumnIDs[3]]["$t"];
+    let theseTags = parsedData[i][myColumnIDs[searchColumn]]["$t"].toUpperCase();
     if (headingLevel == 1) {
       level1Element = document.getElementById(headingID)
       level1Shown = false;
@@ -271,7 +274,7 @@ function doTagSearch(searchTag) {
       level2Shown = false;      
     }
 
-    if (theseTags.indexOf(searchTag) >= 0) {
+    if (theseTags.indexOf(searchTag.toUpperCase()) >= 0) {
       if (level1Shown == false) {
         showHide(level1Element);
         level1Shown = true;
@@ -285,6 +288,7 @@ function doTagSearch(searchTag) {
       document.getElementById("tagsListed").innerHTML += "<li onclick=" + onclickText + ">" + thisHeading + "</li>";            
     }
   }
+  document.getElementById('searchBox').style.display="none";
   document.getElementById("tagList").style.display = "block";
   document.getElementById("fixedSection").innerHTML = searchTag;
   gotoTop();        
@@ -346,4 +350,15 @@ function newSection (changeValue) {
     document.getElementById("nextSection").style.display = "inline";
   }
   loadGoogleSheet(allSheets[currentSheet]);
+}
+
+function searchFocus() {
+  document.getElementById("searchBox").style.display = "inline";
+  document.getElementById("searchText").focus();
+}
+
+function waitForEnter () {
+  if (event.keyCode === 13) {
+    document.getElementById("searchBtn").click();
+  }   
 }
