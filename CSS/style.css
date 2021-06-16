@@ -76,6 +76,23 @@ i {cursor: pointer;}
   border-radius: 4px;
 }
 
+#searchBox {
+  position: fixed;
+  bottom: 70px;
+  right: 7.5%;
+  z-index: 1;
+  display: none;
+}
+
+input[type=text] {
+  width: 100px;
+  transition: ease-in-out, width .35s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 250px;
+}
+
 .fixedToolTip {
   position: fixed;
   bottom: 70px;
