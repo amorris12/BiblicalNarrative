@@ -242,23 +242,28 @@ function expandAll (outlineOnly) {
 }
 
 function findTags(searchTag, notTag) {
-  document.getElementById("tagsListed").innerHTML = "";
-  document.getElementById("tagsHeading").innerHTML = "Results for: " + searchTag;
-  document.getElementById("tagList").style.display = "block";
-  document.getElementById("tagList").style.cursor = "wait";
+  if (searchTag != "" && searchTag != undefined) {
+    document.getElementById("tagsListed").innerHTML = "";
+    document.getElementById("tagsHeading").innerHTML = "Results for: " + searchTag;
+    document.getElementById("tagList").style.display = "block";
+    document.getElementById("tagList").style.cursor = "wait";
 
-  if (currentSheet != 0) {
-    currentSheet = 0;
-    loadGoogleSheet(allSheets[currentSheet], searchTag, notTag);
-  } else {
-    showMainContent();
-    doTagSearch(searchTag, notTag);
-    document.getElementById("tagList").style.cursor = "auto";
+    if (currentSheet != 0) {
+      currentSheet = 0;
+      loadGoogleSheet(allSheets[currentSheet], searchTag, notTag);
+    } else {
+      showMainContent();
+      doTagSearch(searchTag, notTag);
+      document.getElementById("tagList").style.cursor = "auto";
+    }
   }
 }
 
 function doTagSearch(searchTag, notTag) {
   let level1Element, level1Shown, level2Element, level2Shown, i;
+  let searchWords = searchTag.split(" ");
+  //alert(searchWords[0]);
+
   for (i = 1; i < numOfRows; i ++) {
     let searchColumn = 3; // default column is tags
     if (notTag) {searchColumn = 5} // search text instead of tags
@@ -288,9 +293,12 @@ function doTagSearch(searchTag, notTag) {
       document.getElementById("tagsListed").innerHTML += "<li onclick=" + onclickText + ">" + thisHeading + "</li>";            
     }
   }
+  if (document.getElementById("tagsListed").innerHTML == "") {document.getElementById("tagsListed").innerHTML = "Not found";}
   document.getElementById('searchBox').style.display="none";
+  document.getElementById('searchText').value = "";
   document.getElementById("tagList").style.display = "block";
-  document.getElementById("fixedSection").innerHTML = searchTag;
+  document.getElementById("fixedSection").innerHTML = "Searched " +  searchTag;
+  //scrollFunction();
   gotoTop();        
 }
 
