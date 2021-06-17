@@ -55,14 +55,15 @@
 		<span id="tipText" class="w3-text w3-tag fixedToolTip" >Search</span>		
 		<i class="fas fa-search"></i>
 	</span>
-	<span id="searchBox" class="w3-animate-opacity">
-		<span id="searchBtn" onclick="findTags(searchText.value, true)"><i class="fas fa-search"></i></span>
-		<input type="text" id="searchText" name="searchText" placeholder="search..." onkeyup="waitForEnter()">
-	</span>
 	<span onclick="document.getElementById('jumpTo').style.display='block'" id="jump" class="clickable w3-tooltip"
 	  style="border-radius: 0px 4px 4px 0px; padding-right: 10px">
 		<span id="tipText" class="w3-text w3-tag fixedToolTip" >Jump to</span>
 		<i class="fas fa-bars"></i>
+	</span>
+	<span id="searchBox" class="w3-animate-opacity w3-display-container">
+		<span id="searchBtn" onclick="findTags(searchText.value, true)" class="w3-display-right" style="padding-right: 8px; color: black;"><i class="fas fa-search"></i></span>
+		<span id="searchX" class="w3-display-topright" onclick="document.getElementById('searchBox').style.display='none'">&times;</span>
+		<input type="text" id="searchText" name="searchText" placeholder="search..." onkeyup="waitForEnter()">
 	</span>
 </div>
 
