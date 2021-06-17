@@ -129,6 +129,17 @@ input[type=text]:focus {
   cursor: pointer;
 }
 
+#searchX {
+  color: black;
+  font-size: 12px;
+  padding-right: 2px;
+}
+
+#searchX:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
 #myLayout {
   margin-left: 7.5%;
   margin-right: 7.5%;
