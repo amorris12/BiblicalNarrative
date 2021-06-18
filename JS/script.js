@@ -28,7 +28,6 @@ var numOfRows = 0; // this will be the number of rows excluding the headers
 var numOfCols = 0; // this will be the number of columns
 var currentSheet = 0;
 var allLabels = [];
-var scrollDir = 0;
 
 loadGoogleSheet(allSheets[currentSheet]);
 
@@ -372,8 +371,4 @@ function waitForEnter () {
   if (event.keyCode === 13) {
     document.getElementById("searchBtn").click();
   }   
-}
-
-function scrollEvent(event) {
-  scrollDir = event.deltaY;
 }
