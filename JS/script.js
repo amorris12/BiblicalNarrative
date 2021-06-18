@@ -365,6 +365,7 @@ function newSection (changeValue) {
 function searchFocus() {
   document.getElementById("searchBox").style.display = "inline";
   document.getElementById("searchText").focus();
+  document.getElementById("fixedToolTip").style.display = "none";
 }
 
 function waitForEnter () {
