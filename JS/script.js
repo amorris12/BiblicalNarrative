@@ -280,7 +280,10 @@ function doTagSearch(searchTag, notTag) {
       level2Shown = false;      
     }
 
-    if (theseTags.indexOf(searchTag.toUpperCase()) >= 0) {
+    let keyWord = "", thisSearch = 0;
+    for (keyWord of searchWords) {if (theseTags.indexOf(keyWord.toUpperCase()) >= 0) {thisSearch ++;}}    
+
+    if (thisSearch == searchWords.length) {
       if (level1Shown == false) {
         showHide(level1Element);
         level1Shown = true;
@@ -295,6 +298,7 @@ function doTagSearch(searchTag, notTag) {
       document.getElementById("tagsListed").innerHTML += "<li onclick=" + onclickText + ">" + thisHeading + "</li>";            
     }
   }
+
   document.getElementById("tagsHeading").innerHTML = foundCount + " Results for: " + searchTag;
   document.getElementById('searchBox').style.display = "none";
   document.getElementById('searchText').value = "";
