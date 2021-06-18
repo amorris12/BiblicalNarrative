@@ -28,6 +28,7 @@ var numOfRows = 0; // this will be the number of rows excluding the headers
 var numOfCols = 0; // this will be the number of columns
 var currentSheet = 0;
 var allLabels = [];
+var scrollDir = 0;
 
 loadGoogleSheet(allSheets[currentSheet]);
 
@@ -72,16 +73,18 @@ function scrollFunction() {
   let allH1s = document.getElementsByTagName("h1"), i;
   let windowHeight = window.innerHeight;
   let scrollPos = document.documentElement.scrollTop;
-  let noneInView = true;
+  let noneInView = true;  
+  let lastInView = 0;
 
   for  (i = 0; i < allH1s.length; i ++) {
     let mySectionPos = allH1s[i].offsetTop;
+    if (mySectionPos < scrollPos + windowHeight) {lastInView = i;}
     if (mySectionPos > scrollPos && mySectionPos < scrollPos + windowHeight) {
-      mySection.innerHTML = allLabels[i];
       noneInView = false;
       break;
     }
   }
+  mySection.innerHTML = allLabels[lastInView];
 
   if (noneInView) {mySection.style.display = "inline";} else {mySection.style.display = "none";}
 }
@@ -369,4 +372,8 @@ function waitForEnter () {
   if (event.keyCode === 13) {
     document.getElementById("searchBtn").click();
   }   
+}
+
+function scrollEvent(event) {
+  scrollDir = event.deltaY;
 }
