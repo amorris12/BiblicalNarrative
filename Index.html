@@ -22,6 +22,7 @@
 <!-- Fixed Buttons -->
 <div id="fixedDiv">
 	<span id="fixedSection" style="display: none;"></span>
+	<span id="temp"></span>
 	<span onclick="showModal()" id="details" class="clickable w3-tooltip" 
 	  style="border-radius: 4px 0px 0px 4px; padding-left: 10px">
 		<span id="tipText" class="w3-text w3-tag fixedToolTip" >Notes and Credits</span>
@@ -61,8 +62,8 @@
 		<i class="fas fa-bars"></i>
 	</span>
 	<span id="searchBox" class="w3-animate-opacity w3-display-container">
-		<span id="searchBtn" onclick="findTags(searchText.value, true)" class="w3-display-right" style="padding-right: 8px; color: black;"><i class="fas fa-search"></i></span>
-		<span id="searchX" class="w3-display-topright" onclick="document.getElementById('searchBox').style.display='none'">&times;</span>
+		<span id="searchBtn" onclick="findTags(searchText.value, true)" class="w3-display-left"><i class="fas fa-search"></i></span>
+		<span id="searchX" class="w3-display-right" onclick="document.getElementById('searchBox').style.display='none'">&times;</span>
 		<input type="text" id="searchText" name="searchText" placeholder="search..." onkeyup="waitForEnter()">
 	</span>
 </div>
