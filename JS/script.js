@@ -262,8 +262,18 @@ function findTags(searchTag, notTag) {
 
 function doTagSearch(searchTag, notTag) {
   let level1Element, level1Shown, level2Element, level2Shown, i;
-  let searchWords = searchTag.split(" ");
   let foundCount = 0;
+  let searchWords = "";
+  let searchLength = 0;
+  let noQuotes = true;
+  if (searchTag.indexOf('"') >= 0) {
+    searchWords = searchTag.replace(/"/g, "");
+    searchLength = 1;
+    noQuotes = false;
+  } else {
+    searchWords = searchTag.split(" ");
+    searchLength = searchWords.length;
+  }
 
   for (i = 1; i < numOfRows; i ++) {
     let searchColumn = 3; // default column is tags
@@ -281,9 +291,13 @@ function doTagSearch(searchTag, notTag) {
     }
 
     let keyWord = "", thisSearch = 0;
-    for (keyWord of searchWords) {if (theseTags.indexOf(keyWord.toUpperCase()) >= 0) {thisSearch ++;}}    
+    if (noQuotes) {
+      for (keyWord of searchWords) {if (theseTags.indexOf(keyWord.toUpperCase()) >= 0) {thisSearch ++;}}    
+    } else {
+      if (theseTags.indexOf(searchWords.toUpperCase()) >= 0) {thisSearch ++;}
+    }
 
-    if (thisSearch == searchWords.length) {
+    if (thisSearch == searchLength) {
       if (level1Shown == false) {
         showHide(level1Element);
         level1Shown = true;
