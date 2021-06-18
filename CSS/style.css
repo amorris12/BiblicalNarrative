@@ -156,8 +156,23 @@ input[type=text]:focus {
 
 @media only screen and (max-width: 600px) {
   #myLayout {
-	margin-left: 0%;
-	margin-right: 0%;
+	  margin-left: 0%;
+	  margin-right: 0%;
+  }
+
+  #fixedDiv {
+    left: 5px;
+    bottom: 10px;
+    text-align: center;
+    font-size: 24px;
+  }
+
+  #fixedSection {
+    position: fixed;
+    bottom: 60px;
+    left: 0px;
+    z-index: 1;
+    width: 100%;
   }
 
   h1 {font-size: 20px;}
@@ -165,6 +180,27 @@ input[type=text]:focus {
   h3 {font-size: 16px;}
   h4 {font-size: 22px;}
   p {font-size: 14px;}
-  #fixedDiv {right: 5px;}
-  .fixedToolTip {right: 5px;}
+
+  #searchBox {
+    font-size: 16px;
+    bottom: 60px;
+    right: 0px;
+    width: 100%;
+  }
+
+  #searchBox:focusout {width: 100px;}
+
+  input[type=text] {
+    width: 100%;    
+  }
+
+  input[type=text]:focus {
+    width: 100%;
+  }
+
+  .fixedToolTip {
+    left: 0px;
+    width: 100%;
+    font-size: 16px;
+  }
 }
