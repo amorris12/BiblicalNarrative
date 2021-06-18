@@ -246,7 +246,6 @@ function expandAll (outlineOnly) {
 function findTags(searchTag, notTag) {
   if (searchTag != "" && searchTag != undefined) {
     document.getElementById("tagsListed").innerHTML = "";
-    document.getElementById("tagsHeading").innerHTML = "Results for: " + searchTag;
     document.getElementById("tagList").style.display = "block";
     document.getElementById("tagList").style.cursor = "wait";
 
@@ -264,7 +263,7 @@ function findTags(searchTag, notTag) {
 function doTagSearch(searchTag, notTag) {
   let level1Element, level1Shown, level2Element, level2Shown, i;
   let searchWords = searchTag.split(" ");
-  //alert(searchWords[0]);
+  let foundCount = 0;
 
   for (i = 1; i < numOfRows; i ++) {
     let searchColumn = 3; // default column is tags
@@ -290,17 +289,16 @@ function doTagSearch(searchTag, notTag) {
         showHide(level2Element);
         level2Shown = true;
       }
+      foundCount ++;
       showHide(document.getElementById(headingID));      
       let onclickText = "performJump('" + headingID + "')";
       document.getElementById("tagsListed").innerHTML += "<li onclick=" + onclickText + ">" + thisHeading + "</li>";            
     }
   }
-  if (document.getElementById("tagsListed").innerHTML == "") {document.getElementById("tagsListed").innerHTML = "Not found";}
-  document.getElementById('searchBox').style.display="none";
+  document.getElementById("tagsHeading").innerHTML = foundCount + " Results for: " + searchTag;
+  document.getElementById('searchBox').style.display = "none";
   document.getElementById('searchText').value = "";
   document.getElementById("tagList").style.display = "block";
-  document.getElementById("fixedSection").innerHTML = "Searched " +  searchTag;
-  //scrollFunction();
   gotoTop();        
 }
 
