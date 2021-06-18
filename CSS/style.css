@@ -129,15 +129,23 @@ input[type=text]:focus {
   cursor: pointer;
 }
 
+#searchText {
+  padding-left: 20px;
+}
+
+#searchBtn {
+  color: black;
+  padding-left: 4px;
+}
+
 #searchX {
   color: black;
-  font-size: 12px;
-  padding-right: 2px;
+  padding-right: 4px;
 }
 
 #searchX:hover {
   cursor: pointer;
-  opacity: 0.8;
+  color: grey;
 }
 
 #myLayout {
