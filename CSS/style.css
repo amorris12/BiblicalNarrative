@@ -1,3 +1,5 @@
+* {font-family: Lato, Arial, sans-serif;}
+
 h1 {
   font-family: Georgia;
   font-size: 24px;
@@ -171,6 +173,7 @@ input[type=text]:focus {
     bottom: 10px;
     text-align: center;
     font-size: 24px;
+    width: 100%;
   }
 
   #fixedSection {
