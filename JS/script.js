@@ -293,6 +293,7 @@ function doTagSearch(searchTag, notTag) {
     let keyWord = "", thisSearch = 0;
     for (keyWord of searchWords) {if (theseTags.indexOf(keyWord.toUpperCase()) >= 0) {thisSearch ++;}}    
     //(theseTags.indexOf(keyWord.toUpperCase()) > 0 && theseTags.slice(theseTags.indexOf(keyWord.toUpperCase() - 1, 1) != " ")
+  
 
     if (thisSearch == searchLength) {
       if (level1Shown == false) {
@@ -372,6 +373,8 @@ function newSection (changeValue) {
     document.getElementById("previousSection").style.display = "inline";
     document.getElementById("nextSection").style.display = "inline";
   }
+  document.getElementById("tagList").style.display = "none";
+  document.getElementById("jumpTo").style.display = "none";
   loadGoogleSheet(allSheets[currentSheet]);
 }
 
