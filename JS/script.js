@@ -267,13 +267,13 @@ function doTagSearch(searchTag, notTag) {
   let searchLength = 0;
   let noQuotes = true;
   if (searchTag.indexOf('"') >= 0) {
-    searchWords = searchTag.replace(/"/g, "");
-    searchLength = 1;
+    let tempWords = searchTag.replace(/"/g, "");
+    searchWords = tempWords.split("~");
     noQuotes = false;
   } else {
     searchWords = searchTag.split(" ");
-    searchLength = searchWords.length;
   }
+  searchLength = searchWords.length;
 
   for (i = 1; i < numOfRows; i ++) {
     let searchColumn = 3; // default column is tags
@@ -291,11 +291,8 @@ function doTagSearch(searchTag, notTag) {
     }
 
     let keyWord = "", thisSearch = 0;
-    if (noQuotes) {
-      for (keyWord of searchWords) {if (theseTags.indexOf(keyWord.toUpperCase()) >= 0) {thisSearch ++;}}    
-    } else {
-      if (theseTags.indexOf(searchWords.toUpperCase()) >= 0) {thisSearch ++;}
-    }
+    for (keyWord of searchWords) {if (theseTags.indexOf(keyWord.toUpperCase()) >= 0) {thisSearch ++;}}    
+    //(theseTags.indexOf(keyWord.toUpperCase()) > 0 && theseTags.slice(theseTags.indexOf(keyWord.toUpperCase() - 1, 1) != " ")
 
     if (thisSearch == searchLength) {
       if (level1Shown == false) {
