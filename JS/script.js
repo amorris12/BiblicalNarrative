@@ -318,24 +318,15 @@ function doTagSearch(searchTag, notTag) {
   gotoTop();        
 }
 
-function showNotes (whichNote) {
-  document.getElementById("credits").style.display="none";
-  
-  let i;
-  for (i = 1; i < 5; i ++) {
-    let noteID = "note" + i;
-    if (i == whichNote) {
-      document.getElementById(noteID).style.display = "block";
-    } else {
-      document.getElementById(noteID).style.display = "none";
-    }
-  }
-}
-
-function showModal () {
+function showNotes (whichNote, headingText) {
   document.getElementById("notesCredits").style.display="block";
-  showNotes(0);
-  document.getElementById("credits").style.display="block";
+  let txtFiles = [
+    "Credits.txt",
+    "PurposeNote.txt",
+    "HowToReadNote.txt"
+  ]
+  document.getElementById("noteCreditHeading").innerHTML = headingText;
+  document.getElementById("noteCreditIframe").src = txtFiles[whichNote];
 }
 
 function performJump (whichElement) {
