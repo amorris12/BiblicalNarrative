@@ -23,7 +23,7 @@
 <!-- Fixed Buttons -->
 <div id="fixedDiv">
 	<span id="fixedSection" style="display: none;"></span>
-	<span onclick="showModal()" id="details" class="clickable w3-tooltip" 
+	<span onclick="showNotes(0, 'Credits')" id="details" class="clickable w3-tooltip" 
 	  style="border-radius: 4px 0px 0px 4px; padding-left: 10px">
 		<span id="tipText" class="w3-text w3-tag fixedToolTip" >Notes and Credits</span>
 		<i class="fas fa-info"></i>
@@ -106,71 +106,12 @@
       class="w3-button w3-display-topright">&times;</span>
       <h4>Notes and Credits</h4>
     </div>
-    <iframe type="text/rtf" width="100%" src="TextFile.txt" frameborder="none"></iframe>
-		<div id="credits" class="w3-container">
-	  	<h4><b>Credits</b></h4>
-      <p>
-      	An Analytical Red Letter Harmonyof the Four Gospels: A Return to the Historic Text (Authorized Version)<br>
-      	&copy Copyright 1994-1999 · Floyd Nolen Jones Floyd Jones Ministries, Inc.
-      </p>
-      <p>
-      	<b>By Floyd Nolen Jones</b>, Th.D., Ph.D. 1999<br>
-      	<b>KingsWord Press</b> P.O. Box 130220 The Woodlands, Texas 77393-0220
-      </p>
-      <p>
-        Dr. Jones work is a tremendous, thorough, and God honoring treatment of the Gospels. All credit for the outline, chronology, and historical analysis referenced here goes to him.
-      </p>
-      <p>
-      	<b>Scripture passages</b>: Holy Bible, New International Version®, NIV® Copyright ©1973, 1978, 1984, 2011 by Biblica, Inc.® All rights reserved worldwide.
-      </p>
-      <P>
-      	<b>Header Images</b>: The amazing images in the header are from LumoProject.com and provided by FreeBibleImages.org
-  	</div>
-  	<div id="note1" style="display: none;" class="w3-container">
-  		<h4><b>Purpose</b></h4>
-  		<p>
-  		  Jesus’ faithful journey to the cross and his triumphant resurrection are the center of God’s redemptive plan for our salvation. The purpose of this chronological narrative is to tie all the details provided in each of the four gospels seamlessly together into one cohesive narrative and create a picture of each Jesus’ final days.
-  		</p>
-  		<p>
-  		  We can have complete confidence in God's Word. As we see the perfect harmony between the four Gospels, it eliminates doubt and builds our faith. We can also appreciate the full context of each event in Jesus' final days, so we don't miss out on anything God is saying to us.
-  		</p>
-  	</div>
-  	<div id="note2" style="display: none;" class="w3-container">
-  		<h4><b>How to Read</b></h4>
-  		<p>
-  		  The beginning of each section lists the scriptures references used. A “|” is used to denote where the text moves into the next reference. Whenever a portion of the narrative is recorded in more than one of the gospels, the passages were chosen to include as many details as possible for that account.
-  		</p>
-  		<p>
-  		  The outline is intended to allow us to see each of Jesus’ final days at a glance. Use the <i class='far fa-plus-square'></i> expand sections and sub-sections. The <i class='far fa-caret-square-down'></i> opens up the biblical text for each part of the outline. <i class='far fa-minus-square'></i> and <i class='far fa-caret-square-up'></i> will collapse the sections as desired.
-  		</p>
-  	</div>
-  	<div id="note3" style="display: none;" class="w3-container">
-  		<h4><b>AD 30?</b></h4>
-  		<p>
-  		  To summarize the excellent work of Dr Floyd Nolen Jones, upon careful examination of the scriptures and reflection on first century historical sources we can be confident in identifying the crucifixion and resurrection of Jesus in the year AD 30. Luke 3:23 and Luke 3:1 tell us that Jesus was about thirty years old in the fifteenth year of the reign of Tiberius Caesar when he was baptized by John. The fifteenth year of Tiberius’ reign of Judea from Roman sources equates to AD 26. Jesus' age at this date matches perfectly with dating His birth in 4 BC. This dating is based on astromonical calcuations of an eclipse recorded by first century Jewish historian Josephus that occurred just before the death of Herod the Great.
-  		</p>
-  		<p>
-  		  The book of John records Jesus participating in 4 passovers, the first which coming in the spring of AD 27 after Jesus’ baptism in AD 26. Therefore, we can place Jesus’ crucifixion in AD 30.
-  		</p>
-  		<p>
-  		  This dating is affirmed perfectly by Daniel's prophecy (chapter 9) that there would be 483 years from the decree to restore and rebuild Jerusalem to the death of the annointed one. The decree given to Nehemiah to rebuild the wall can be dated to 454 BC, based on persian records. 454 BC + 30 AD = 484 less 1 for going from BC to AD = 483 years.
-  		</p>
-  	</div>
-  	<div id="note4" style="display: none;" class="w3-container">
-  		<h4><b>Good Thursday?</b></h4>
-  		<p>
-  		  In Matthew 12:40 Jesus said, “the Son of Man will be three days and three nights in the heart of the earth.” Traditionally we have honoured Jesus’ crucifixion for our sins on Good Friday, because the Gospels record that the next day was a Sabbath. However, if Jesus died on a Friday it would not have been three days and three nights to Resurrection Sunday. We can get three days by counting inclusively (which was typically for the jews), but it is only two nights. 
-  		</p>
-  		<p>
-  		  There is an easy solution to this problem. John 19:21 tells that not only was the next day a Sabbath, but it was a “special” Sabbath. This is a reference to Leviticus 23:6,7. The Feast of Unleavened Bread begins the day after the Passover lamb is sacrificed on the 15th of the first month and this day is a Special Sabbath where no one works. Therefore, since Jesus was crucified the day before the feast began and the feast always begins with a Sabbath (no matter the day of the week), Jesus did not have to die on a Friday. In fact we see that Jesus died on a Thursday, so they actually had two Sabbaths in a row, which explains why the women waited until Sunday to bring the spices to the tomb.
-  		</p>
-  	</div>
+  	<h4 id="noteCreditHeading"><b>Credits</b></h4>
+    <iframe id="noteCreditIframe" type="text/plain" width="100%" height="250" src="Credits.txt" frameborder="none"></iframe>
   	<div id="notes" class="w3-container">
-	  <h5><b>Notes</b></h5>
-	  <span onclick="showNotes(1)" style="cursor: pointer;">[Purpose]</span>
-	  <span onclick="showNotes(2)" style="cursor: pointer;">[How to read]</span>
-	  <span onclick="showNotes(3)" style="cursor: pointer;">[AD 30?]</span>
-	  <span onclick="showNotes(4)" style="cursor: pointer;">[Good Thursday?]</span><br><br>
+		  <h5><b>Notes</b></h5>
+		  <span onclick="showNotes(1, 'Purpose')" style="cursor: pointer;">[Purpose]</span>
+		  <span onclick="showNotes(2, 'How to Read')" style="cursor: pointer;">[How to read]</span>
     </div>
   </div>
 </div>
