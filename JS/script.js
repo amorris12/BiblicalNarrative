@@ -64,6 +64,7 @@ function loadGoogleSheet (whatSheetID, searchTag, notTag) {
       findAllLabels();
       showMainContent();
       document.getElementById("tagList").style.cursor = "auto";
+      document.body.style.cursor = "auto";
       document.getElementById("tipTextPrev").innerHTML = sectionTitles[currentSheet - 1];
       document.getElementById("tipTextNext").innerHTML = sectionTitles[currentSheet + 1];
 
@@ -234,11 +235,13 @@ function findTags(searchTag, notTag) {
     document.getElementById("tagsListed").innerHTML = "";
     document.getElementById("tagList").style.display = "block";
     document.getElementById("tagList").style.cursor = "wait";
+    document.body.style.cursor = "wait";
 
     if (currentSheet != 0) {
+      document.getElementById("tagsHeading").innerHTML = "Finding results for: " + searchTag;
       currentSheet = 0;
       loadGoogleSheet(allSheets[currentSheet], searchTag, notTag);
-    } else {
+    } else {      
       showMainContent();
       doTagSearch(searchTag, notTag);
       document.getElementById("tagList").style.cursor = "auto";
@@ -331,6 +334,7 @@ function performJump (whichElement) {
     currentSheet = loadValues[whichElement];
     document.getElementById("titleHeading").innerHTML = "Loading...";
     document.getElementById("mainContent").innerHTML = "";
+    document.body.style.cursor = "wait";
     loadGoogleSheet(allSheets[currentSheet]);
   } else {
     document.getElementById("fixedSection").style.display = "none";
@@ -356,6 +360,7 @@ function newSection (changeValue) {
   document.getElementById("jumpTo").style.display = "none";
   document.getElementById("titleHeading").innerHTML = "Loading...";
   document.getElementById("mainContent").innerHTML = "";
+  document.body.style.cursor = "wait";
   loadGoogleSheet(allSheets[currentSheet]);
 }
 
