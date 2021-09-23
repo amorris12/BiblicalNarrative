@@ -25,45 +25,50 @@ var sheetTitle = ""; // this will be the sheet title not the filename
 var myColumnIDs = []; // this will call the column from the parsed data
 var myHeadings = []; // this pulls the actual heading without the gsx$ that's in the JSON
 var numOfRows = 0; // this will be the number of rows excluding the headers
-var numOfCols = 0; // this will be the number of columns
+var numOfCols = 0; // this will be the number of columns https://docs.google.com/spreadsheets/d/1MiQBX7EnamZngfFyS2T7EkVdAsamEG6wCOcSUsknYgk/gviz/tq?tqx=out:json
 var currentSheet = 0;
 var allLabels = [];
 
 loadGoogleSheet(allSheets[currentSheet]);
 
-function loadGoogleSheet (whatSheetID, searchTag, notTag) {
+
+function loadGoogleSheet (whatSheetID, searchTag, notTag) {  
   sheetID = whatSheetID;
+  fetch("https://cors.bridged.cc/https://docs.google.com/spreadsheets/d/" + sheetID + "/gviz/tq?tqx=out:json")
+    .then((res) => res.text())
+    .then((text) => {      
+      const json = JSON.parse(text.substr(47).slice(0, -2));
 
-  let xmlhttp = new XMLHttpRequest();
-  xmlhttp.open(
-    "GET",
-    "https://spreadsheets.google.com/feeds/list/" + sheetID + "/od6/public/values?alt=json",
-    true
-  );
-  xmlhttp.send();  
+      parsedData =[];
 
-  xmlhttp.onreadystatechange = function () {    
-    if (this.readyState == 4 && this.status == 200) {      
-      rawData = this.responseText;
-      parsedData = JSON.parse(this.responseText).feed.entry;
+      json.table.rows.forEach((row) => {
+        const rowData = {};
+        row.c.forEach((object, index) => {
+          let value = object && object.v;
+          if (value == null || value == undefined) {value = ""};
+          let fDate = object && object.f;
+          if (fDate != null && fDate != undefined) {value = fDate;}
+          const column = json.table.cols[index].label;
+          rowData[column] = value;
+          if (myHeadings[index] != column && column != null) {myHeadings.push(column)};
+        });
+        parsedData.push(rowData);
+      }); 
+      myColumnIDs = myHeadings;
+      numOfRows = parsedData.length;
+      numOfCols = myHeadings.length;
 
-      numOfRows = parsedData.length; // length of parsed data is equal to the number of rows
-      numOfCols = count(rawData, "gsx$") / numOfRows; // occurrences of gsx$ is the number of cells / rows = columns
-      sheetTitle = findTitle(rawData);
-      findHeadings (rawData);
+      document.getElementById("myTitle").innerHTML = parsedData[0][myColumnIDs[3]];
+      document.getElementById("titleHeading").innerHTML = parsedData[0][myColumnIDs[0]];
+      document.getElementById("headerImg").src = parsedData[0][myColumnIDs[4]];
       findAllLabels();
-
-      document.getElementById("myTitle").innerHTML = parsedData[0][myColumnIDs[3]]["$t"];
-      document.getElementById("titleHeading").innerHTML = parsedData[0][myColumnIDs[0]]["$t"];
-      document.getElementById("headerImg").src = parsedData[0][myColumnIDs[4]]["$t"];
       showMainContent();
       document.getElementById("tagList").style.cursor = "auto";
       document.getElementById("tipTextPrev").innerHTML = sectionTitles[currentSheet - 1];
-      document.getElementById("tipTextNext").innerHTML = sectionTitles[currentSheet + 1];      
+      document.getElementById("tipTextNext").innerHTML = sectionTitles[currentSheet + 1];
 
       if (searchTag != "" && searchTag != undefined) {doTagSearch(searchTag, notTag)}
-    }
-  }
+    });
 }
 
 function scrollFunction() {
@@ -98,34 +103,15 @@ function count (text, key)  {
   return myCount;
 }
 
-function findTitle (sheetData) {
-  let titlePos = sheetData.indexOf("title") + 28;
-  let titleEnd = sheetData.indexOf("}", titlePos) - 1;
-  return sheetData.slice(titlePos, titleEnd);
-}
-
-function findHeadings (sheetData) {
-  let newData = sheetData;
-  let i = 0;
-  for (i = 0; i < numOfCols; i++) {
-    let grabBeg = newData.indexOf("gsx$");
-    let grabEnd = newData.indexOf("{", grabBeg) - 2;
-    myColumnIDs[i] = newData.slice(grabBeg, grabEnd); 
-    myHeadings[i] = newData.slice(grabBeg + 4, grabEnd);
-    myHeadings[i] = myHeadings[i].toUpperCase();
-    newData = newData.substring(grabEnd + 2);
-  }
-}
-
 function findAllLabels() {
   let i;
   allLabels = [];
   document.getElementById("jumpList").innerHTML = "";
   for (i = 1; i < numOfRows; i ++) {
-    if (parsedData[i][myColumnIDs[1]]["$t"] == 1) {
-      allLabels.push(parsedData[i][myColumnIDs[4]]["$t"]);
-      let thisID = parsedData[i][myColumnIDs[2]]["$t"];
-      let thisHeading = parsedData[i][myColumnIDs[0]]["$t"]
+    if (parsedData[i][myColumnIDs[1]] == 1) {
+      allLabels.push(parsedData[i][myColumnIDs[4]]);
+      let thisID = parsedData[i][myColumnIDs[2]];
+      let thisHeading = parsedData[i][myColumnIDs[0]]
       let onclickText = "performJump('" + thisID + "')";
       document.getElementById("jumpList").innerHTML += "<li onclick=" + onclickText + ">" + thisHeading + "</li>";
     }
@@ -162,18 +148,18 @@ function showHide (whatElement) {
   whatElement.innerHTML = toggleIcon[currentState] + thisText.substring(textPos);
 }
 
-function showMainContent() {
+function showMainContent() {  
   let thisContent = "";
   let thisIcon = "";
   let lastLevel = 1;
 
   for (i = 1; i < numOfRows; i ++) {
-    let headingName = parsedData[i][myColumnIDs[0]]["$t"];
-    let headingLevel = parsedData[i][myColumnIDs[1]]["$t"];
-    let headingID = parsedData[i][myColumnIDs[2]]["$t"];
-    let theseTags = parsedData[i][myColumnIDs[3]]["$t"];
-    let reference = parsedData[i][myColumnIDs[4]]["$t"];
-    let textValue = parsedData[i][myColumnIDs[5]]["$t"];
+    let headingName = parsedData[i][myColumnIDs[0]];
+    let headingLevel = parsedData[i][myColumnIDs[1]];
+    let headingID = parsedData[i][myColumnIDs[2]];
+    let theseTags = parsedData[i][myColumnIDs[3]];
+    let reference = parsedData[i][myColumnIDs[4]];
+    let textValue = parsedData[i][myColumnIDs[5]];
     
     if (textValue == "") {
       thisIcon = "<i class='far fa-plus-square'></i> ";
@@ -278,10 +264,10 @@ function doTagSearch(searchTag, notTag) {
   for (i = 1; i < numOfRows; i ++) {
     let searchColumn = 3; // default column is tags
     if (notTag) {searchColumn = 5} // search text instead of tags
-    let thisHeading = parsedData[i][myColumnIDs[0]]["$t"]
-    let headingLevel = parsedData[i][myColumnIDs[1]]["$t"];
-    let headingID = parsedData[i][myColumnIDs[2]]["$t"];
-    let theseTags = parsedData[i][myColumnIDs[searchColumn]]["$t"].toUpperCase();
+    let thisHeading = parsedData[i][myColumnIDs[0]]
+    let headingLevel = parsedData[i][myColumnIDs[1]];
+    let headingID = parsedData[i][myColumnIDs[2]];
+    let theseTags = parsedData[i][myColumnIDs[searchColumn]].toUpperCase();
     if (headingLevel == 1) {
       level1Element = document.getElementById(headingID)
       level1Shown = false;
@@ -343,6 +329,8 @@ function performJump (whichElement) {
   if (currentSheet == 0 && document.getElementById('jumpTo').style.display == "block") {
     document.getElementById('jumpTo').style.display = "none";
     currentSheet = loadValues[whichElement];
+    document.getElementById("titleHeading").innerHTML = "Loading...";
+    document.getElementById("mainContent").innerHTML = "";
     loadGoogleSheet(allSheets[currentSheet]);
   } else {
     document.getElementById("fixedSection").style.display = "none";
@@ -366,6 +354,8 @@ function newSection (changeValue) {
   }
   document.getElementById("tagList").style.display = "none";
   document.getElementById("jumpTo").style.display = "none";
+  document.getElementById("titleHeading").innerHTML = "Loading...";
+  document.getElementById("mainContent").innerHTML = "";
   loadGoogleSheet(allSheets[currentSheet]);
 }
 
