@@ -245,6 +245,7 @@ function findTags(searchTag, notTag) {
       showMainContent();
       doTagSearch(searchTag, notTag);
       document.getElementById("tagList").style.cursor = "auto";
+      document.body.style.cursor = "auto";
     }
   }
 }
