@@ -1,1 +1,7 @@
-How to Read Note
+This chronological narrative is divided into major sections with headings and sub-headings to illustrate how it flows together. Clicking the "+" or "-" will expand or collapse each section. The the up and down arrows open and close the blocks of biblical text.
+
+Each section also lists common places, people groups, and themes. If you click on one of those tags, you will see a list of each time it appears in the narrative. Each also section lists the passage references contained therein.
+
+You navigate seperately to each of the six major sections and use the three line option button in the bottom right corner to see the outline of that section.
+
+The other buttons allow you to quickly expand and collapse, switch between major sections, and search.
