@@ -7,7 +7,7 @@ var allSheets = [
   "174C46F9O8UqsNli3L1kUiIk1y6bIU0tNUZABJIkTNkw",
   "1_82EXFYldpTLcDFJJY9QYG6vg_UCfnux7gIdtf-QHtg",
   "1AUw8q1TYPxdMdTB3ZRtlMVuath1KsTBli0Kps6YmBn4"
-]
+];
 var sectionTitles = [
   "Whole Old Testament",
   "Beginning to Joseph",
@@ -17,13 +17,13 @@ var sectionTitles = [
   "Kingdom of Judah",
   "Kingdom of Israel",
   "Captivity and Back"
-]
+];
+var myColumnIDs = ["Heading", "Level", "id", "Tags", "Reference", "Text"];
+
 var sheetID = "" // the ID from the Google URL
+var sheetName = "Sheet1";
 var rawData = ""; // this will be the full JSON output of the sheet as text
 var parsedData = []; // this will be the sheet data called by parsedData[row_number][gsx$+column_heading][$t]
-var sheetTitle = ""; // this will be the sheet title not the filename
-var myColumnIDs = []; // this will call the column from the parsed data
-var myHeadings = []; // this pulls the actual heading without the gsx$ that's in the JSON
 var numOfRows = 0; // this will be the number of rows excluding the headers
 var numOfCols = 0; // this will be the number of columns https://docs.google.com/spreadsheets/d/1MiQBX7EnamZngfFyS2T7EkVdAsamEG6wCOcSUsknYgk/gviz/tq?tqx=out:json
 var currentSheet = 0;
@@ -34,29 +34,12 @@ loadGoogleSheet(allSheets[currentSheet]);
 
 function loadGoogleSheet (whatSheetID, searchTag, notTag) {  
   sheetID = whatSheetID;
-  fetch("https://cors.bridged.cc/https://docs.google.com/spreadsheets/d/" + sheetID + "/gviz/tq?tqx=out:json")
+  fetch("https://opensheet.vercel.app/" + whatSheetID + "/" + sheetName)
     .then((res) => res.text())
     .then((text) => {      
-      const json = JSON.parse(text.substr(47).slice(0, -2));
-
-      parsedData =[];
-
-      json.table.rows.forEach((row) => {
-        const rowData = {};
-        row.c.forEach((object, index) => {
-          let value = object && object.v;
-          if (value == null || value == undefined) {value = ""};
-          let fDate = object && object.f;
-          if (fDate != null && fDate != undefined) {value = fDate;}
-          const column = json.table.cols[index].label;
-          rowData[column] = value;
-          if (myHeadings[index] != column && column != null) {myHeadings.push(column)};
-        });
-        parsedData.push(rowData);
-      }); 
-      myColumnIDs = myHeadings;
+      parsedData = JSON.parse(text);
+      numOfCols = myColumnIDs.length;
       numOfRows = parsedData.length;
-      numOfCols = myHeadings.length;
 
       document.getElementById("myTitle").innerHTML = parsedData[0][myColumnIDs[3]];
       document.getElementById("titleHeading").innerHTML = parsedData[0][myColumnIDs[0]];
@@ -162,7 +145,7 @@ function showMainContent() {
     let reference = parsedData[i][myColumnIDs[4]];
     let textValue = parsedData[i][myColumnIDs[5]];
     
-    if (textValue == "") {
+    if (textValue == "" || textValue == undefined) {
       thisIcon = "<i class='far fa-plus-square'></i> ";
     } else {
       thisIcon = "<i class='far fa-caret-square-down'></i> ";
@@ -174,7 +157,7 @@ function showMainContent() {
     thisContent += "<h" + headingLevel + " id='" + headingID + "' onclick='showHide(this)'>" 
       + thisIcon + headingName + "</h" + headingLevel + ">";
 
-    if (textValue == "") {
+    if (textValue == "" || textValue == undefined) {
       thisContent += "<div id='" + headingID + "Content' class='indent" + headingLevel + "' style='display: none;'>";
     } else {
       thisContent += "<div id='" + headingID + "Content' style='display: none;'>"
