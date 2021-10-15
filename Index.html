@@ -23,7 +23,7 @@
 <!-- Fixed Buttons -->
 <div id="fixedDiv">
 	<span id="fixedSection" style="display: none;"></span>
-	<span onclick="showNotes(0, 'Credits')" id="details" class="clickable w3-tooltip" 
+	<span onclick="showNotes(0)" id="details" class="clickable w3-tooltip" 
 	  style="border-radius: 4px 0px 0px 4px; padding-left: 10px">
 		<span id="tipText" class="w3-text w3-tag fixedToolTip" >Notes and Credits</span>
 		<i class="fas fa-info"></i>
@@ -107,11 +107,14 @@
       <h4>Notes and Credits</h4>
     </div>
   	<h4 id="noteCreditHeading"><b>Credits</b></h4>
-    <iframe id="noteCreditIframe" type="text/plain" width="100%" height="250" src="Credits.txt" frameborder="none"></iframe>
-  	<div id="notes" class="w3-container">
-		  <h5><b>Notes</b></h5>
-		  <span onclick="showNotes(1, 'Purpose')" style="cursor: pointer;">[Purpose]</span>
-		  <span onclick="showNotes(2, 'How to Read')" style="cursor: pointer;">[How to read]</span>
+    <div class="w3-container" id="noteCreditDIV"></div>
+	  <h5 style="padding-left: 4px;"><b>Notes</b></h5>
+  	<div id="notes" class="w3-container" style="padding-bottom: 4px;">
+		  <span id="noteLink0" onclick="showNotes(0)" style="cursor: pointer;"></span>
+		  <span id="noteLink1" onclick="showNotes(1)" style="cursor: pointer;"></span>
+		  <span id="noteLink2" onclick="showNotes(2)" style="cursor: pointer;"></span>
+		  <span id="noteLink3" onclick="showNotes(3)" style="cursor: pointer;"></span>
+		  <span id="noteLink4" onclick="showNotes(4)" style="cursor: pointer;"></span>		  
     </div>
   </div>
 </div>
