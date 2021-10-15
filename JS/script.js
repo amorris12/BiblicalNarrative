@@ -232,6 +232,7 @@ function findTags(searchTag, notTag) {
 }
 
 function doTagSearch(searchTag, notTag) {
+  document.getElementById("tipText").style.display = "none";
   let level1Element, level1Shown, level2Element, level2Shown, i;
   let foundCount = 0;
   let searchWords = "";
