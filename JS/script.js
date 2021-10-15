@@ -252,6 +252,8 @@ function doTagSearch(searchTag, notTag) {
     let thisHeading = parsedData[i][myColumnIDs[0]]
     let headingLevel = parsedData[i][myColumnIDs[1]];
     let headingID = parsedData[i][myColumnIDs[2]];
+
+    if (parsedData[i][myColumnIDs[searchColumn]] == undefined) {parsedData[i][myColumnIDs[searchColumn]] = ""}
     let theseTags = parsedData[i][myColumnIDs[searchColumn]].toUpperCase();
     if (headingLevel == 1) {
       level1Element = document.getElementById(headingID)
@@ -349,7 +351,7 @@ function newSection (changeValue) {
 function searchFocus() {
   document.getElementById("searchBox").style.display = "inline";
   document.getElementById("searchText").focus();
-  document.getElementById("fixedToolTip").style.display = "none";
+  //document.getElementById("fixedToolTip").style.display = "none";
 }
 
 function waitForEnter () {
