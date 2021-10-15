@@ -20,7 +20,6 @@ var sectionTitles = [
 ];
 var myColumnIDs = ["Heading", "Level", "id", "Tags", "Reference", "Text"];
 
-var sheetID = "" // the ID from the Google URL
 var sheetName = "Sheet1";
 var rawData = ""; // this will be the full JSON output of the sheet as text
 var parsedData = []; // this will be the sheet data called by parsedData[row_number][gsx$+column_heading][$t]
@@ -28,12 +27,11 @@ var numOfRows = 0; // this will be the number of rows excluding the headers
 var numOfCols = 0; // this will be the number of columns https://docs.google.com/spreadsheets/d/1MiQBX7EnamZngfFyS2T7EkVdAsamEG6wCOcSUsknYgk/gviz/tq?tqx=out:json
 var currentSheet = 0;
 var allLabels = [];
+var myNotes = [];
 
 loadGoogleSheet(allSheets[currentSheet]);
 
-
 function loadGoogleSheet (whatSheetID, searchTag, notTag) {  
-  sheetID = whatSheetID;
   fetch("https://opensheet.vercel.app/" + whatSheetID + "/" + sheetName)
     .then((res) => res.text())
     .then((text) => {      
@@ -291,15 +289,15 @@ function doTagSearch(searchTag, notTag) {
   gotoTop();        
 }
 
-function showNotes (whichNote, headingText) {
-  document.getElementById("notesCredits").style.display="block";
-  let txtFiles = [
-    "Credits.txt",
-    "PurposeNote.txt",
-    "HowToReadNote.txt"
-  ]
-  document.getElementById("noteCreditHeading").innerHTML = headingText;
-  document.getElementById("noteCreditIframe").src = txtFiles[whichNote];
+function showNotes (whichNote) {
+  fetch("https://opensheet.vercel.app/" + allSheets[currentSheet] + "/Notes")
+    .then(res => res.json())
+    .then(data => {let i;
+      for (i = 0; i < data.length; i ++) {document.getElementById("noteLink" + i).innerHTML = "[" + data[i].Heading + "]";}
+      document.getElementById("notesCredits").style.display="block";
+      document.getElementById("noteCreditHeading").innerHTML = data[whichNote].Heading;
+      document.getElementById("noteCreditDIV").innerHTML = data[whichNote].Note;
+    })
 }
 
 function performJump (whichElement) {
