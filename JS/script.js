@@ -44,8 +44,6 @@ function loadGoogleSheet (whatSheetID, searchTag, notTag) {
       document.getElementById("headerImg").src = parsedData[0][myColumnIDs[4]];
       findAllLabels();
       showMainContent();
-      document.getElementById("tagList").style.cursor = "auto";
-      document.body.style.cursor = "auto";
       document.getElementById("tipTextPrev").innerHTML = sectionTitles[currentSheet - 1];
       document.getElementById("tipTextNext").innerHTML = sectionTitles[currentSheet + 1];
 
@@ -215,8 +213,6 @@ function findTags(searchTag, notTag) {
   if (searchTag != "" && searchTag != undefined) {
     document.getElementById("tagsListed").innerHTML = "";
     document.getElementById("tagList").style.display = "block";
-    document.getElementById("tagList").style.cursor = "wait";
-    document.body.style.cursor = "wait";
 
     if (currentSheet != 0) {
       document.getElementById("tagsHeading").innerHTML = "Finding results for: " + searchTag;
@@ -225,14 +221,11 @@ function findTags(searchTag, notTag) {
     } else {      
       showMainContent();
       doTagSearch(searchTag, notTag);
-      document.getElementById("tagList").style.cursor = "auto";
-      document.body.style.cursor = "auto";
     }
   }
 }
 
 function doTagSearch(searchTag, notTag) {
-  document.getElementById("tipText").style.display = "none";
   let level1Element, level1Shown, level2Element, level2Shown, i;
   let foundCount = 0;
   let searchWords = "";
@@ -289,6 +282,7 @@ function doTagSearch(searchTag, notTag) {
   document.getElementById('searchBox').style.display = "none";
   document.getElementById('searchText').value = "";
   document.getElementById("tagList").style.display = "block";
+  document.getElementById("tagList").style.display.focus();
   gotoTop();        
 }
 
@@ -319,7 +313,6 @@ function performJump (whichElement) {
     currentSheet = loadValues[whichElement];
     document.getElementById("titleHeading").innerHTML = "Loading...";
     document.getElementById("mainContent").innerHTML = "";
-    document.body.style.cursor = "wait";
     loadGoogleSheet(allSheets[currentSheet]);
   } else {
     document.getElementById("fixedSection").style.display = "none";
@@ -345,7 +338,6 @@ function newSection (changeValue) {
   document.getElementById("jumpTo").style.display = "none";
   document.getElementById("titleHeading").innerHTML = "Loading...";
   document.getElementById("mainContent").innerHTML = "";
-  document.body.style.cursor = "wait";
   loadGoogleSheet(allSheets[currentSheet]);
 }
 
