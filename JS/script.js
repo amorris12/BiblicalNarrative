@@ -7,7 +7,7 @@ var allSheets = [
   "174C46F9O8UqsNli3L1kUiIk1y6bIU0tNUZABJIkTNkw",
   "1_82EXFYldpTLcDFJJY9QYG6vg_UCfnux7gIdtf-QHtg",
   "1AUw8q1TYPxdMdTB3ZRtlMVuath1KsTBli0Kps6YmBn4",
-  "1eNfLQcyZepKCOWU219omHmJxqF-kjIJBge0EXCCXzEk"
+  "1a086ENej2EQQPUugTXraGzwg66_pTUtHE0UgyX5kXaQ"
 ];
 var sectionTitles = [
   "Whole Old Testament",
@@ -26,8 +26,8 @@ var rawData = ""; // this will be the full JSON output of the sheet as text
 var parsedData = []; // this will be the sheet data called by parsedData[row_number][gsx$+column_heading][$t]
 var numOfRows = 0; // this will be the number of rows excluding the headers
 var numOfCols = 0; // this will be the number of columns https://docs.google.com/spreadsheets/d/1MiQBX7EnamZngfFyS2T7EkVdAsamEG6wCOcSUsknYgk/gviz/tq?tqx=out:json
-var currentSheet = 0;
-var currentTestament = 0;
+var currentSheet = 8;
+var currentTestament = 1;
 var allLabels = [];
 var myNotes = [];
 
