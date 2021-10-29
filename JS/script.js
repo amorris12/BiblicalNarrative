@@ -7,7 +7,7 @@ var allSheets = [
   "174C46F9O8UqsNli3L1kUiIk1y6bIU0tNUZABJIkTNkw",
   "1_82EXFYldpTLcDFJJY9QYG6vg_UCfnux7gIdtf-QHtg",
   "1AUw8q1TYPxdMdTB3ZRtlMVuath1KsTBli0Kps6YmBn4",
-  "1eNfLQcyZepKCOWU219omHmJxqF-kjIJBge0EXCCXzEk"
+  "1a086ENej2EQQPUugTXraGzwg66_pTUtHE0UgyX5kXaQ"
 ];
 var sectionTitles = [
   "Whole Old Testament",
@@ -341,6 +341,7 @@ function newSection (changeValue) {
   }
   document.getElementById("tagList").style.display = "none";
   document.getElementById("jumpTo").style.display = "none";
+  document.getElementById("headerImg").src = "";
   document.getElementById("titleHeading").innerHTML = "Loading...";
   document.getElementById("mainContent").innerHTML = "";
   loadGoogleSheet(allSheets[currentSheet]);
@@ -351,6 +352,7 @@ function switchNTOT() {
   currentSheet = currentTestament * 8;
   let testamentTipText = ["New Testament", "Old Testament"];
   document.getElementById("tipTextTestament").innerHTML = testamentTipText[currentTestament];
+  document.getElementById("headerImg").src = "";
   document.getElementById("titleHeading").innerHTML = "Loading...";
   document.getElementById("mainContent").innerHTML = "";
   loadGoogleSheet(allSheets[currentSheet]);
