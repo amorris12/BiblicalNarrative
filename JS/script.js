@@ -17,8 +17,7 @@ var sectionTitles = [
   "United Kingdom",
   "Kingdom of Judah",
   "Kingdom of Israel",
-  "Captivity and Back",
-  "Passion Week"
+  "Captivity and Back"
 ];
 var myColumnIDs = ["Heading", "Level", "id", "Tags", "Reference", "Text"];
 
@@ -28,6 +27,7 @@ var parsedData = []; // this will be the sheet data called by parsedData[row_num
 var numOfRows = 0; // this will be the number of rows excluding the headers
 var numOfCols = 0; // this will be the number of columns https://docs.google.com/spreadsheets/d/1MiQBX7EnamZngfFyS2T7EkVdAsamEG6wCOcSUsknYgk/gviz/tq?tqx=out:json
 var currentSheet = 0;
+var currentTestament = 0;
 var allLabels = [];
 var myNotes = [];
 
@@ -174,12 +174,15 @@ function showMainContent() {
   if (currentSheet == 0) {
     document.getElementById("previousSection").style.display = "none";
     document.getElementById("nextSection").style.display = "inline";
-  } else if (currentSheet != 7) {
-    document.getElementById("previousSection").style.display = "inline";
-    document.getElementById("nextSection").style.display = "inline";
-  } else {
+  } else if (currentSheet == 7) {
     document.getElementById("previousSection").style.display = "inline";
     document.getElementById("nextSection").style.display = "none";
+  } else if (currentSheet == 8) {
+    document.getElementById("previousSection").style.display = "none";
+    document.getElementById("nextSection").style.display = "none";
+  } else {
+    document.getElementById("previousSection").style.display = "inline";
+    document.getElementById("nextSection").style.display = "inline";
   }
 }
 
@@ -307,8 +310,7 @@ function performJump (whichElement) {
     UnitedKingdom: 4,
     Judah: 5,
     Israel: 6,
-    Exile: 7,
-    Passion: 8
+    Exile: 7
   }
   
   if (currentSheet == 0 && document.getElementById('jumpTo').style.display == "block") {
@@ -331,7 +333,7 @@ function newSection (changeValue) {
   currentSheet += changeValue;
   if (currentSheet == 0) {
     document.getElementById("previousSection").style.display = "none";
-  } else if (currentSheet == 8) {
+  } else if (currentSheet == 7) {
     document.getElementById("nextSection").style.display = "none";
   } else {
     document.getElementById("previousSection").style.display = "inline";
@@ -339,6 +341,16 @@ function newSection (changeValue) {
   }
   document.getElementById("tagList").style.display = "none";
   document.getElementById("jumpTo").style.display = "none";
+  document.getElementById("titleHeading").innerHTML = "Loading...";
+  document.getElementById("mainContent").innerHTML = "";
+  loadGoogleSheet(allSheets[currentSheet]);
+}
+
+function switchNTOT() {  
+  currentTestament = Math.abs(currentTestament - 1);
+  currentSheet = currentTestament * 8;
+  let testamentTipText = ["New Testament", "Old Testament"];
+  document.getElementById("tipTextTestament").innerHTML = testamentTipText[currentTestament];
   document.getElementById("titleHeading").innerHTML = "Loading...";
   document.getElementById("mainContent").innerHTML = "";
   loadGoogleSheet(allSheets[currentSheet]);
