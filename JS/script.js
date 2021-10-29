@@ -6,7 +6,8 @@ var allSheets = [
   "1yAMAUcWjHWliwhFKnpui786w91lJM2rQzuknzD-TlyU",
   "174C46F9O8UqsNli3L1kUiIk1y6bIU0tNUZABJIkTNkw",
   "1_82EXFYldpTLcDFJJY9QYG6vg_UCfnux7gIdtf-QHtg",
-  "1AUw8q1TYPxdMdTB3ZRtlMVuath1KsTBli0Kps6YmBn4"
+  "1AUw8q1TYPxdMdTB3ZRtlMVuath1KsTBli0Kps6YmBn4",
+  "1eNfLQcyZepKCOWU219omHmJxqF-kjIJBge0EXCCXzEk"
 ];
 var sectionTitles = [
   "Whole Old Testament",
@@ -16,7 +17,8 @@ var sectionTitles = [
   "United Kingdom",
   "Kingdom of Judah",
   "Kingdom of Israel",
-  "Captivity and Back"
+  "Captivity and Back",
+  "Passion Week"
 ];
 var myColumnIDs = ["Heading", "Level", "id", "Tags", "Reference", "Text"];
 
@@ -305,7 +307,8 @@ function performJump (whichElement) {
     UnitedKingdom: 4,
     Judah: 5,
     Israel: 6,
-    Exile: 7
+    Exile: 7,
+    Passion: 8
   }
   
   if (currentSheet == 0 && document.getElementById('jumpTo').style.display == "block") {
@@ -328,7 +331,7 @@ function newSection (changeValue) {
   currentSheet += changeValue;
   if (currentSheet == 0) {
     document.getElementById("previousSection").style.display = "none";
-  } else if (currentSheet == 7) {
+  } else if (currentSheet == 8) {
     document.getElementById("nextSection").style.display = "none";
   } else {
     document.getElementById("previousSection").style.display = "inline";
