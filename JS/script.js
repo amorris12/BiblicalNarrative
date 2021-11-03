@@ -254,7 +254,7 @@ function doTagSearch(searchTag, notTag) {
 
     if (parsedData[i][myColumnIDs[searchColumn]] == undefined) {parsedData[i][myColumnIDs[searchColumn]] = ""}
     let theseTags = parsedData[i][myColumnIDs[searchColumn]].toUpperCase();
-    if (headingLevel == 1) {
+    if (headingLevel == 1) {      
       level1Element = document.getElementById(headingID)
       level1Shown = false;
     } else if (headingLevel == 2) {
@@ -265,10 +265,9 @@ function doTagSearch(searchTag, notTag) {
     let keyWord = "", thisSearch = 0;
     for (keyWord of searchWords) {if (theseTags.indexOf(keyWord.toUpperCase()) >= 0) {thisSearch ++;}}    
     //(theseTags.indexOf(keyWord.toUpperCase()) > 0 && theseTags.slice(theseTags.indexOf(keyWord.toUpperCase() - 1, 1) != " ")
-  
 
     if (thisSearch == searchLength) {
-      if (level1Shown == false) {
+      if (level1Shown == false) {        
         showHide(level1Element);
         level1Shown = true;
       } 
@@ -287,7 +286,6 @@ function doTagSearch(searchTag, notTag) {
   document.getElementById('searchBox').style.display = "none";
   document.getElementById('searchText').value = "";
   document.getElementById("tagList").style.display = "block";
-  document.getElementById("tagList").style.display.focus();
   gotoTop();        
 }
 
