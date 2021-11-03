@@ -219,7 +219,7 @@ function findTags(searchTag, notTag) {
     document.getElementById("tagsListed").innerHTML = "";
     document.getElementById("tagList").style.display = "block";
 
-    if (currentSheet != 0) {
+    if (currentSheet != 0 && currentTestament == 0) {
       document.getElementById("tagsHeading").innerHTML = "Finding results for: " + searchTag;
       currentSheet = 0;
       loadGoogleSheet(allSheets[currentSheet], searchTag, notTag);
