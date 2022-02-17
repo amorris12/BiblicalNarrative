@@ -7,7 +7,7 @@ var allSheets = [
   "174C46F9O8UqsNli3L1kUiIk1y6bIU0tNUZABJIkTNkw",
   "1_82EXFYldpTLcDFJJY9QYG6vg_UCfnux7gIdtf-QHtg",
   "1AUw8q1TYPxdMdTB3ZRtlMVuath1KsTBli0Kps6YmBn4",
-  "1fC1SB0GttGRKh4BUd-6vb0QlCU8QQO8H4On8KWwW1gs"
+  "1eNfLQcyZepKCOWU219omHmJxqF-kjIJBge0EXCCXzEk"
 ];
 var sectionTitles = [
   "Whole Old Testament",
@@ -348,7 +348,7 @@ function newSection (changeValue) {
 function switchNTOT() {  
   currentTestament = Math.abs(currentTestament - 1);
   currentSheet = currentTestament * 8;
-  let testamentTipText = ["New Testament", "Old Testament"];
+  let testamentTipText = ["Go To Jesus' Final Days", "Go To Old Testament"];
   document.getElementById("tipTextTestament").innerHTML = testamentTipText[currentTestament];
   document.getElementById("headerImg").src = "https://by3301files.storage.live.com/y4mrdwRsSYx1kPKiHdBsUtrSowNrB55bgXrjOZSItR2zO1N2L4MUzQvxBIBBWi1UTKk7QfBz19h_6Fje-hce5iC7DYuMjybxRRqB_WGjRdfmwL4_D-7ArLMLjwMgQidbM74M61Rl6ABfTVZyVbP55CPPMi88NBg4-bB6uDcpvkBvg7Qzuwsu6mdYJSzcCeZ0reH?width=1516&height=305&cropmode=none";
   document.getElementById("titleHeading").innerHTML = "Loading...";
