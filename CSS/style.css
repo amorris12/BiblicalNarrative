@@ -159,7 +159,7 @@ input[type=text]:focus {
 }
 
 #mainContent:last-child {
-  padding-bottom: 80px;
+  padding-bottom: 100px;
 }
 
 @media only screen and (max-width: 1200px) {
