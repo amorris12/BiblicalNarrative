@@ -156,7 +156,17 @@ input[type=text]:focus {
   margin-left: 7.5%;
   margin-right: 7.5%;
   border-right: 2px solid #607D8B;
-  border-bottom: 1px solid #607D8B;
+}
+
+#mainContent:last-child {
+  padding-bottom: 80px;
+}
+
+@media only screen and (max-width: 1200px) {
+    #myLayout {
+      margin-left: 2.5%;
+      margin-right: 2.5%;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -170,7 +180,6 @@ input[type=text]:focus {
 	  margin-left: 0%;
 	  margin-right: 0%;
     border-right: none;
-    border-bottom: none;
   }
 
   #fixedDiv {
