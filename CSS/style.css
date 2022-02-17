@@ -45,6 +45,8 @@ h4 {
   cursor: pointer;
 }
 
+.tag:hover {background: grey;}
+
 i {cursor: pointer;}
 
 .indent1 {
@@ -154,6 +156,7 @@ input[type=text]:focus {
   margin-left: 7.5%;
   margin-right: 7.5%;
   border-right: 2px solid #607D8B;
+  border-bottom: 1px solid #607D8B;
 }
 
 @media only screen and (max-width: 600px) {
@@ -166,6 +169,8 @@ input[type=text]:focus {
   #myLayout {
 	  margin-left: 0%;
 	  margin-right: 0%;
+    border-right: none;
+    border-bottom: none;
   }
 
   #fixedDiv {
