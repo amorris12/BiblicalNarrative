@@ -34,7 +34,7 @@ var myNotes = [];
 loadGoogleSheet(allSheets[currentSheet]);
 
 function loadGoogleSheet (whatSheetID, searchTag, notTag) {  
-  fetch("https://opensheet.vercel.app/" + whatSheetID + "/" + sheetName)
+  fetch("https://opensheet.elk.sh/" + whatSheetID + "/" + sheetName)
     .then((res) => res.text())
     .then((text) => {      
       parsedData = JSON.parse(text);
@@ -290,7 +290,7 @@ function doTagSearch(searchTag, notTag) {
 }
 
 function showNotes (whichNote) {
-  fetch("https://opensheet.vercel.app/" + allSheets[currentSheet] + "/Notes")
+  fetch("https://opensheet.elk.sh/" + allSheets[currentSheet] + "/Notes")
     .then(res => res.json())
     .then(data => {let i;
       for (i = 0; i < data.length; i ++) {document.getElementById("noteLink" + i).innerHTML = "[" + data[i].Heading + "]";}
