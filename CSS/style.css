@@ -1,36 +1,33 @@
 * {font-family: Lato, Arial, sans-serif;}
 
+h1, h2, h3, h4 {font-family: 'Patua One';}
+
 h1 {
-  font-family: Georgia;
   font-size: 24px;
   padding-left: 4px;
-  border-left: 8px solid #607D8B;
-  font-weight: bold;
+  border-left: 8px solid #0C4FA0;
 }
 
 h2 {
-  font-family: Georgia;
   font-size: 22px;
 }
 
 h3 {
-  font-family: Georgia;
   font-size: 18px;
 }
 
 h4 {
-  font-family: Georgia;
   font-size: 32px;
   padding-left: 4px;
 }
 
 .mainText {
-  font-family: Calibri;
+  font-family: Lato;
   font-size: 18px;
 }
 
 .reference {
-  font-family: Calibri;
+  font-family: Lato;
   font-size: small;
   font-weight: bold;
 }
@@ -52,13 +49,18 @@ i {cursor: pointer;}
 .indent1 {
   margin-left: 3px;
   padding-left: 5px;
-  border-left: 5px solid #607D8B;
+  border-left: 5px solid #0C4FA0;
   background-color: white;
 }
 
 .indent2 {
   padding-left: 4px;
   border-left: 6px solid lightgrey;
+}
+
+#pageTop {
+  background-color: #0C4FA0;
+  color: white;
 }
 
 #fixedDiv {
@@ -121,7 +123,7 @@ input[type=text]:focus {
 }
 
 .clickable {
-  background-color: #607D8B;
+  background-color: #0C4FA0;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 2px;
@@ -155,7 +157,6 @@ input[type=text]:focus {
 #myLayout {
   margin-left: 7.5%;
   margin-right: 7.5%;
-  border-right: 2px solid #607D8B;
 }
 
 #mainContent:last-child {
