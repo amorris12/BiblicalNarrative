@@ -9,6 +9,7 @@
 <link rel="icon" type="image/x-icon" href="Images/book-bible-solid.svg">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="css/style.css">
+<link href='https://fonts.googleapis.com/css?family=Patua One' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 <script src="https://kit.fontawesome.com/be258eac49.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="js/script.js"></script>
@@ -90,7 +91,7 @@
 </div>
 
 <!-- Table of Contents -->
-<div id="jumpTo" class="fixedToolTip w3-blue-grey w3-animate-zoom" style="display: none;">
+<div id="jumpTo" class="fixedToolTip w3-animate-zoom" style="display: none; background-color: #0C4FA0; color: white;">
   	<span 
   	  onclick="document.getElementById('jumpTo').style.display='none'"
       class="w3-button w3-display-topright w3-large" 
@@ -106,7 +107,7 @@
 <!-- Notes and Credits Modal -->
 <div id="notesCredits" class="w3-modal">
   <div class="w3-modal-content">
-    <div class="w3-container w3-blue-grey">
+    <div class="w3-container" style="background-color: #0C4FA0; color: white;">
       <span onclick="document.getElementById('notesCredits').style.display='none'"
       class="w3-button w3-display-topright">&times;</span>
       <h4>Notes and Credits</h4>
@@ -129,7 +130,7 @@
 
 <!-- Dynamic Content Pulled from Spreadsheet -->
 <div id="myLayout">
-  <div id="pageTop" class="w3-blue-grey">  	
+  <div id="pageTop">
   	<img id="headerImg" src="" width="100%" />
   	<h4 id="titleHeading">Loading...</h4>
   </div>
