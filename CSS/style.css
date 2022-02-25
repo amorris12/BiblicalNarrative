@@ -1,6 +1,6 @@
 * {font-family: Lato, Arial, sans-serif;}
 
-h1, h2, h3, h4 {font-family: 'Patua One';}
+h1, h4 {font-family: 'Patua One';}
 
 h1 {
   font-size: 24px;
@@ -49,13 +49,13 @@ i {cursor: pointer;}
 .indent1 {
   margin-left: 3px;
   padding-left: 5px;
-  border-left: 5px solid #0C4FA0;
+  border-left: 5px solid #2B80C3;
   background-color: white;
 }
 
 .indent2 {
   padding-left: 4px;
-  border-left: 6px solid lightgrey;
+  border-left: 6px solid #65CBE4;
 }
 
 #pageTop {
