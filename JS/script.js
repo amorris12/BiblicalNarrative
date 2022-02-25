@@ -23,7 +23,8 @@ var myColumnIDs = ["Heading", "Level", "id", "Tags", "Reference", "Text"];
 
 var sheetName = "Sheet1";
 var rawData = ""; // this will be the full JSON output of the sheet as text
-var parsedData = []; // this will be the sheet data called by parsedData[row_number][gsx$+column_heading][$t]
+var parsedData = []; // this will be the sheet data called by parsedData[row_number][column_heading]
+var allNotes = []; // this will be the footnote data from the Notes Tab of the spreadsheet
 var numOfRows = 0; // this will be the number of rows excluding the headers
 var numOfCols = 0; // this will be the number of columns https://docs.google.com/spreadsheets/d/1MiQBX7EnamZngfFyS2T7EkVdAsamEG6wCOcSUsknYgk/gviz/tq?tqx=out:json
 var currentSheet = 8;
@@ -45,6 +46,7 @@ function loadGoogleSheet (whatSheetID, searchTag, notTag) {
       document.getElementById("titleHeading").innerHTML = parsedData[0][myColumnIDs[0]];
       document.getElementById("headerImg").src = parsedData[0][myColumnIDs[4]];
       findAllLabels();
+      loadNotes();
       showMainContent();
       document.getElementById("tipTextPrev").innerHTML = sectionTitles[currentSheet - 1];
       document.getElementById("tipTextNext").innerHTML = sectionTitles[currentSheet + 1];
@@ -289,15 +291,23 @@ function doTagSearch(searchTag, notTag) {
   gotoTop();        
 }
 
-function showNotes (whichNote) {
+function loadNotes () {
   fetch("https://opensheet.elk.sh/" + allSheets[currentSheet] + "/Notes")
     .then(res => res.json())
-    .then(data => {let i;
-      for (i = 0; i < data.length; i ++) {document.getElementById("noteLink" + i).innerHTML = "[" + data[i].Heading + "]";}
-      document.getElementById("notesCredits").style.display="block";
-      document.getElementById("noteCreditHeading").innerHTML = data[whichNote].Heading;
-      document.getElementById("noteCreditDIV").innerHTML = data[whichNote].Note;
+    .then(data => {
+      allNotes = data;
+      let i = 0, noteLinksHTML = "";
+      for (i = 0; i < data.length; i ++) {
+        noteLinksHTML += "<span onclick='showNotes(" + i + ")'>[" + data[i].Heading + "]</span>";        
+      }
+      document.getElementById("notes").innerHTML = noteLinksHTML;
     })
+}
+
+function showNotes (whichNote) {
+  document.getElementById("notesCredits").style.display="block";
+  document.getElementById("noteCreditHeading").innerHTML = allNotes[whichNote].Heading;
+  document.getElementById("noteCreditDIV").innerHTML = allNotes[whichNote].Note;
 }
 
 function performJump (whichElement) {
