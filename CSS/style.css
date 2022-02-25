@@ -34,15 +34,18 @@ h4 {
 
 .tag {
   font-size: 10px;
-  background: lightgrey;
-  border: 2px solid grey;
+  background: #65CBE4;
+  border: 1px solid black;
   border-radius: 3px;
   border-style: groove;
   padding: 3px;
   cursor: pointer;
 }
 
-.tag:hover {background: grey;}
+.tag:hover {
+  background: #2B80C3;
+  color: white;
+}
 
 i {cursor: pointer;}
 
@@ -75,8 +78,8 @@ i {cursor: pointer;}
 }
 
 #fixedSection {
-  background-color: black;
-  opacity: .6;
+  background-color: #0C4FA0;
+  opacity: .7;
   color: white;
   padding: 10px;
   border-radius: 4px;
@@ -162,6 +165,8 @@ input[type=text]:focus {
 #mainContent:last-child {
   padding-bottom: 112px;
 }
+
+span {cursor: pointer;}
 
 @media only screen and (max-width: 1200px) {
     #myLayout {
