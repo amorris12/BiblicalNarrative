@@ -1,5 +1,5 @@
 var allSheets = [
-  "1fC1SB0GttGRKh4BUd-6vb0QlCU8QQO8H4On8KWwW1gs",
+  "1MiQBX7EnamZngfFyS2T7EkVdAsamEG6wCOcSUsknYgk",
   "1EZvfJs3lGRkqehQlXUvLVa-ciZTEpGTaPosfw-ZIxX0",
   "1IZnMzsvJnXAixmytSBVSYvE2dKOwXlSj82ZfxUHuSAI",
   "1tZsU7hr0ySET1xxzSNqoNgHc05QeWIY8Km_bUgRmGw0",
@@ -358,7 +358,7 @@ function newSection (changeValue) {
 function switchNTOT() {  
   currentTestament = Math.abs(currentTestament - 1);
   currentSheet = currentTestament * 8;
-  let testamentTipText = ["Go To New Testament", "Go To Old Testament"];
+  let testamentTipText = ["Go To Jesus' Final Days", "Go To Old Testament"];
   document.getElementById("tipTextTestament").innerHTML = testamentTipText[currentTestament];
   document.getElementById("headerImg").src = "https://by3301files.storage.live.com/y4mrdwRsSYx1kPKiHdBsUtrSowNrB55bgXrjOZSItR2zO1N2L4MUzQvxBIBBWi1UTKk7QfBz19h_6Fje-hce5iC7DYuMjybxRRqB_WGjRdfmwL4_D-7ArLMLjwMgQidbM74M61Rl6ABfTVZyVbP55CPPMi88NBg4-bB6uDcpvkBvg7Qzuwsu6mdYJSzcCeZ0reH?width=1516&height=305&cropmode=none";
   document.getElementById("titleHeading").innerHTML = "Loading...";
