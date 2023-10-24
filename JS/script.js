@@ -28,7 +28,7 @@ var allNotes = []; // this will be the footnote data from the Notes Tab of the s
 var numOfRows = 0; // this will be the number of rows excluding the headers
 var numOfCols = 0; // this will be the number of columns https://docs.google.com/spreadsheets/d/1MiQBX7EnamZngfFyS2T7EkVdAsamEG6wCOcSUsknYgk/gviz/tq?tqx=out:json
 var currentSheet = 0;
-var currentTestament = 1;
+var currentTestament = 0;
 var allLabels = [];
 var myNotes = [];
 
@@ -358,7 +358,7 @@ function newSection (changeValue) {
 function switchNTOT() {  
   currentTestament = Math.abs(currentTestament - 1);
   currentSheet = currentTestament * 8;
-  let testamentTipText = ["Go To Jesus' Final Days", "Go To Old Testament"];
+  let testamentTipText = ["Go To New Testament", "Go To Old Testament"];
   document.getElementById("tipTextTestament").innerHTML = testamentTipText[currentTestament];
   document.getElementById("headerImg").src = "https://by3301files.storage.live.com/y4mrdwRsSYx1kPKiHdBsUtrSowNrB55bgXrjOZSItR2zO1N2L4MUzQvxBIBBWi1UTKk7QfBz19h_6Fje-hce5iC7DYuMjybxRRqB_WGjRdfmwL4_D-7ArLMLjwMgQidbM74M61Rl6ABfTVZyVbP55CPPMi88NBg4-bB6uDcpvkBvg7Qzuwsu6mdYJSzcCeZ0reH?width=1516&height=305&cropmode=none";
   document.getElementById("titleHeading").innerHTML = "Loading...";
